@@ -31,7 +31,7 @@ namespace Huobi.Net.Objects
         [JsonProperty("symbol-partition")]
         public string SymbolPartition { get; set; }
         [JsonProperty("state")]
-        public string State { get; set; }
+        public HuobiSymbolState State { get; set; }
         /// <summary>
         /// Minimum value of the amount
         /// </summary>
