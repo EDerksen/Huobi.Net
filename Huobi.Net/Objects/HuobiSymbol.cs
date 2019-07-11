@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Huobi.Net.Converters;
+using Newtonsoft.Json;
 
 namespace Huobi.Net.Objects
 {
@@ -30,7 +31,10 @@ namespace Huobi.Net.Objects
         public int AmountPrecision { get; set; }
         [JsonProperty("symbol-partition")]
         public string SymbolPartition { get; set; }
-        [JsonProperty("state")]
+        /// <summary>
+        /// The state of the symbol
+        /// </summary>
+        [JsonProperty("state"), JsonConverter(typeof(SymbolStateConverter))]
         public HuobiSymbolState State { get; set; }
         /// <summary>
         /// Minimum value of the amount
