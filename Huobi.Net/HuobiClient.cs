@@ -580,7 +580,7 @@ namespace Huobi.Net
         /// <param name="direction">Direction of the results to return when using the fromId parameter</param>
         /// <param name="limit">The max number of results</param>
         /// <returns></returns>
-        public WebCallResult<List<HuobiOrder>> GetOrders(string symbol, IEnumerable<HuobiOrderState> states, IEnumerable<HuobiOrderType> types = null, DateTime? startTime = null, DateTime? endTime = null, long? fromId = null, HuobiFilterDirection? direction = null, int? limit = null) => GetOrdersAsync(symbol, states, types, startTime, endTime, fromId, direction, limit).Result;
+        public WebCallResult<List<HuobiOrder>> GetOrders(string symbol = null, IEnumerable<HuobiOrderState> states = null, IEnumerable<HuobiOrderType> types = null, DateTime? startTime = null, DateTime? endTime = null, long? fromId = null, HuobiFilterDirection? direction = null, int? limit = null) => GetOrdersAsync(symbol, states, types, startTime, endTime, fromId, direction, limit).Result;
         /// <summary>
         /// Gets a list of orders
         /// </summary>
@@ -593,15 +593,13 @@ namespace Huobi.Net
         /// <param name="direction">Direction of the results to return when using the fromId parameter</param>
         /// <param name="limit">The max number of results</param>
         /// <returns></returns>
-        public async Task<WebCallResult<List<HuobiOrder>>> GetOrdersAsync(string symbol, IEnumerable<HuobiOrderState> states, IEnumerable<HuobiOrderType> types = null, DateTime? startTime = null, DateTime? endTime = null, long? fromId = null, HuobiFilterDirection? direction = null, int? limit = null)
+        public async Task<WebCallResult<List<HuobiOrder>>> GetOrdersAsync(string symbol = null, IEnumerable<HuobiOrderState> states = null, IEnumerable<HuobiOrderType> types = null, DateTime? startTime = null, DateTime? endTime = null, long? fromId = null, HuobiFilterDirection? direction = null, int? limit = null)
         {
             var stateConverter = new OrderStateConverter(false);
             var typeConverter = new OrderTypeConverter(false);
-            var parameters = new Dictionary<string, object>
-            {
-                { "symbol", symbol },
-                { "states", string.Join(",", states.Select(s => JsonConvert.SerializeObject(s, stateConverter))) }
-            };
+            var parameters = new Dictionary<string, object>();
+            parameters.AddOptionalParameter("symbol", symbol);
+            parameters.AddOptionalParameter("states", states == null ? null : string.Join(",", states.Select(s => JsonConvert.SerializeObject(s, stateConverter))));
             parameters.AddOptionalParameter("start-date", startTime?.ToString("yyyy-MM-dd"));
             parameters.AddOptionalParameter("end-date", endTime?.ToString("yyyy-MM-dd"));
             parameters.AddOptionalParameter("types", types == null ? null : string.Join(",", types.Select(s => JsonConvert.SerializeObject(s, typeConverter))));

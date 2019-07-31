@@ -328,7 +328,7 @@ namespace Huobi.Net.Interfaces
         /// <param name="direction">Direction of the results to return when using the fromId parameter</param>
         /// <param name="limit">The max number of results</param>
         /// <returns></returns>
-        WebCallResult<List<HuobiOrder>> GetOrders(string symbol, IEnumerable<HuobiOrderState> states, IEnumerable<HuobiOrderType> types = null, DateTime? startTime = null, DateTime? endTime = null, long? fromId = null, HuobiFilterDirection? direction = null, int? limit = null);
+        WebCallResult<List<HuobiOrder>> GetOrders(string symbol = null, IEnumerable<HuobiOrderState> states = null, IEnumerable<HuobiOrderType> types = null, DateTime? startTime = null, DateTime? endTime = null, long? fromId = null, HuobiFilterDirection? direction = null, int? limit = null);
 
         /// <summary>
         /// Gets a list of orders
@@ -342,7 +342,7 @@ namespace Huobi.Net.Interfaces
         /// <param name="direction">Direction of the results to return when using the fromId parameter</param>
         /// <param name="limit">The max number of results</param>
         /// <returns></returns>
-        Task<WebCallResult<List<HuobiOrder>>> GetOrdersAsync(string symbol, IEnumerable<HuobiOrderState> states, IEnumerable<HuobiOrderType> types = null, DateTime? startTime = null, DateTime? endTime = null, long? fromId = null, HuobiFilterDirection? direction = null, int? limit = null);
+        Task<WebCallResult<List<HuobiOrder>>> GetOrdersAsync(string symbol = null, IEnumerable<HuobiOrderState> states = null, IEnumerable<HuobiOrderType> types = null, DateTime? startTime = null, DateTime? endTime = null, long? fromId = null, HuobiFilterDirection? direction = null, int? limit = null);
 
         /// <summary>
         /// Gets a list of trades for a specific symbol
