@@ -681,8 +681,8 @@ namespace Huobi.Net
         {
             var parameters = new Dictionary<string, object>();
             parameters.AddOptionalParameter("symbol", symbol);
-            parameters.AddOptionalParameter("start-time", startTime == null ? null : ConvertToUnixTimestamp(startTime).ToString());
-            parameters.AddOptionalParameter("end-time", endTime == null ? null : ConvertToUnixTimestamp(endTime).ToString());
+            parameters.AddOptionalParameter("start-time", startTime == null ? null : ToUnixTimestamp(startTime.Value).ToString());
+            parameters.AddOptionalParameter("end-time", endTime == null ? null : ToUnixTimestamp(endTime.Value).ToString());
             parameters.AddOptionalParameter("direct", direction == null ? null : JsonConvert.SerializeObject(direction, new FilterDirectionConverter(false)));
             parameters.AddOptionalParameter("size", limit);
 
@@ -756,12 +756,11 @@ namespace Huobi.Net
             SignPublicRequests = options.SignPublicRequests;
         }
 
-        private double ConvertToUnixTimestamp(DateTime? date)
+        private static long ToUnixTimestamp(DateTime time)
         {
-            DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-            TimeSpan diff = date.Value - origin;
-            return Math.Floor(diff.TotalMilliseconds);
+            return (long)(time - new DateTime(1970, 1, 1)).TotalMilliseconds;
         }
+
         #endregion
     }
 }
