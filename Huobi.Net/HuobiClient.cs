@@ -681,8 +681,8 @@ namespace Huobi.Net
         {
             var parameters = new Dictionary<string, object>();
             parameters.AddOptionalParameter("symbol", symbol);
-            parameters.AddOptionalParameter("start-date", startTime == null ? null : ConvertToUnixTimestamp(startTime).ToString());
-            parameters.AddOptionalParameter("end-date", endTime == null ? null : ConvertToUnixTimestamp(endTime).ToString());
+            parameters.AddOptionalParameter("start-time", startTime == null ? null : ConvertToUnixTimestamp(startTime).ToString());
+            parameters.AddOptionalParameter("end-time", endTime == null ? null : ConvertToUnixTimestamp(endTime).ToString());
             parameters.AddOptionalParameter("direct", direction == null ? null : JsonConvert.SerializeObject(direction, new FilterDirectionConverter(false)));
             parameters.AddOptionalParameter("size", limit);
 
