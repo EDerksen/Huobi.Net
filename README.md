@@ -32,6 +32,10 @@ Other CryptoExchange.Net implementations:
 <br />
 <a href="https://github.com/JKorf/Kucoin.Net">Kucoin</a>
 </td>
+<td><a href="https://github.com/JKorf/Kraken.Net"><img src="https://github.com/JKorf/Kraken.Net/blob/master/Resources/icon.png?raw=true"></a>
+<br />
+<a href="https://github.com/JKorf/Kraken.Net">Kraken</a>
+</td>
 </table>
 Implementations from third parties:
 <table>
@@ -80,6 +84,24 @@ Huobi.Net provides two clients to interact with the Huobi API. The `HuobiClient`
 Examples can be found in the Examples folder.
 
 ## Release notes
+* Version 1.1.8 - 07 Aug 2019
+    * Updated CryptoExchange.Net
+
+* Version 1.1.7 - 05 Aug 2019
+    * added code docs xml
+
+* Version 1.1.6 - 01 Aug 2019
+    * Added HistoryOrders endpoint, made symbol parameter optional for order retrieving methods
+
+* Version 1.1.5 - 09 jul 2019
+	* Updated HuobiSymbolOrderBook
+
+* Version 1.1.4 - 27 jun 2019
+	* Added Loan and Interest to HuobiBalanceTypes enum, fixing deserialization issue
+
+* Version 1.1.3 - 24 jun 2019
+	* Extended HuobiSymbol object
+
 * Version 1.1.2 - 17 may 2019
 	* Fix for deserializing stop-orders created on the website
 
