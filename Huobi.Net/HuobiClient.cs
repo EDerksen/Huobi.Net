@@ -50,6 +50,7 @@ namespace Huobi.Net
         private const string OrderTradesEndpoint = "order/orders/{}/matchresults";
         private const string SymbolTradesEndpoint = "order/matchresults";
         private const string HistoryOrdersEndpoint = "order/history";
+        private const string depositWithdrawEndpoint = "query/deposit-withdraw";
 
         /// <summary>
         /// Whether public requests should be signed if ApiCredentials are provided. Needed for accurate rate limiting.
@@ -567,6 +568,18 @@ namespace Huobi.Net
         {
             var result = await ExecuteRequest<HuobiBasicResponse<List<HuobiOrderTrade>>>(GetUrl(FillPathParameter(OrderTradesEndpoint, orderId.ToString()), "1"), "GET", signed: true).ConfigureAwait(false);
             return new WebCallResult<List<HuobiOrderTrade>>(result.ResponseStatusCode, result.ResponseHeaders, result.Data?.Data, result.Error);
+        }
+
+        public async Task<WebCallResult<List<HuobiTransaction>>> GetTransactions(HuobiTransactionType type, string currency = null, string size = null, HuobiTransactionDirect? direct = null)
+        {
+            var parameters = new Dictionary<string, object>();
+            parameters.AddOptionalParameter("type", type.ToString().ToLower());
+            parameters.AddOptionalParameter("currency", currency);
+            parameters.AddOptionalParameter("direct", direct.HasValue ? direct.ToString().ToLower() : null);
+            parameters.AddOptionalParameter("size", size);
+
+            var result = await ExecuteRequest<HuobiBasicResponse<List<HuobiTransaction>>>(GetUrl(depositWithdrawEndpoint, "1"), "GET", parameters, signed: true).ConfigureAwait(false);
+            return new WebCallResult<List<HuobiTransaction>>(result.ResponseStatusCode, result.ResponseHeaders, result.Data?.Data, result.Error);
         }
 
         /// <summary>

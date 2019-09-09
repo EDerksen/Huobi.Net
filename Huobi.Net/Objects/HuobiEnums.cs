@@ -108,4 +108,15 @@
         Suspended,
         PreOnline
     }
+
+    public enum HuobiTransactionDirect
+    {
+        Prev,
+        Next
+    }
+    public enum HuobiTransactionType
+    {
+        Deposit,
+        Withdraw
+    }
 }
