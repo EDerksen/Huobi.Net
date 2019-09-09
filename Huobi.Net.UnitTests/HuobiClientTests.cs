@@ -18,7 +18,7 @@ namespace Huobi.Net.UnitTests
         {
             var client = new HuobiClient();
             client.SetApiCredentials("1271c8bb-frbghq7rnm-23547346-805e8", "d70f9243-3bc11fb4-cde24786-2e8f");
-            var result = await client.GetTransactions(HuobiTransactionType.Deposit);
+            var result = await client.GetTransactionsAsync(HuobiTransactionType.Deposit);
         }
 
         [TestCase]

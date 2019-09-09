@@ -570,16 +570,36 @@ namespace Huobi.Net
             return new WebCallResult<List<HuobiOrderTrade>>(result.ResponseStatusCode, result.ResponseHeaders, result.Data?.Data, result.Error);
         }
 
-        public async Task<WebCallResult<List<HuobiTransaction>>> GetTransactions(HuobiTransactionType type, string currency = null, string size = null, HuobiTransactionDirect? direct = null)
+        /// <summary>
+        /// Get details of an transaction
+        /// </summary>
+        /// <param name="currency">When currency is not specified, the reponse would include the records of ALL currencies.</param>
+        /// <param name="type">Define transfer type to search	deposit, withdraw.</param>
+        /// <param name="from">The transfer id to begin search	1 ~ latest record ID	
+        ///                     When 'from' is not specified, the default value would be 1 if 'direct' is 'prev' with the response in ascending order, 
+        ///                     the default value would be the ID of latest record if 'direct' is 'next' with the response in descending order.</param>
+        /// <param name="size">The number of items to return 1-500</param>
+        /// <param name="direct">the order of response	'prev' (ascending), 'next' (descending)	'prev'</param>
+        /// <returns></returns>
+        public async Task<WebCallResult<List<HuobiTransaction>>> GetTransactionsAsync(HuobiTransactionType type, string currency = null, string size = null, HuobiFilterDirection? direct = null, long? fromId = 1)
         {
-            var parameters = new Dictionary<string, object>();
-            parameters.AddOptionalParameter("type", type.ToString().ToLower());
+            var parameters = new Dictionary<string, object>()
+            {
+                { "type", type.ToString().ToLower() }
+            };
+
             parameters.AddOptionalParameter("currency", currency);
-            parameters.AddOptionalParameter("direct", direct.HasValue ? direct.ToString().ToLower() : null);
             parameters.AddOptionalParameter("size", size);
+            parameters.AddOptionalParameter("direct", direct == null ? null : JsonConvert.SerializeObject(direct, new FilterDirectionConverter(false)));
+            parameters.AddOptionalParameter("from", fromId.HasValue ? fromId.Value : 1);
 
             var result = await ExecuteRequest<HuobiBasicResponse<List<HuobiTransaction>>>(GetUrl(depositWithdrawEndpoint, "1"), "GET", parameters, signed: true).ConfigureAwait(false);
             return new WebCallResult<List<HuobiTransaction>>(result.ResponseStatusCode, result.ResponseHeaders, result.Data?.Data, result.Error);
+        }
+
+        public WebCallResult<List<HuobiTransaction>> GetTransactions(HuobiTransactionType type, string currency = null, string size = null, HuobiFilterDirection? direct = null, long? fromId = 1)
+        {
+            return GetTransactionsAsync(type, currency, size, direct, fromId).Result;
         }
 
         /// <summary>
