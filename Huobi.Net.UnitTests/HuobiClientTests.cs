@@ -7,12 +7,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using CryptoExchange.Net.Authentication;
+using CryptoExchange.Net.Objects;
+using System.Threading.Tasks;
 
 namespace Huobi.Net.UnitTests
 {
     [TestFixture]
     public class HuobiClientTests
     {
+        [TestCase]
+        public async Task GetTransactions()
+        {
+            var client = new HuobiClient();
+            client.SetApiCredentials("1271c8bb-frbghq7rnm-23547346-805e8", "d70f9243-3bc11fb4-cde24786-2e8f");
+            var result = await client.GetTransactionsAsync(HuobiTransactionType.Deposit);
+        }
+
         [TestCase]
         public void GetMarketTickers_Should_RespondWithMarketTickers()
         {
