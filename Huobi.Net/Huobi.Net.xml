@@ -376,6 +376,19 @@
             <param name="ct">Cancellation token</param>
             <returns></returns>
         </member>
+        <member name="M:Huobi.Net.HuobiClient.GetTransactionsAsync(Huobi.Net.Objects.HuobiTransactionType,System.String,System.String,System.Nullable{Huobi.Net.Objects.HuobiFilterDirection},System.Nullable{System.Int64},System.Threading.CancellationToken)">
+            <summary>
+            Get details of an transaction
+            </summary>
+            <param name="currency">When currency is not specified, the reponse would include the records of ALL currencies.</param>
+            <param name="type">Define transfer type to search	deposit, withdraw.</param>
+            <param name="from">The transfer id to begin search	1 ~ latest record ID	
+                                When 'from' is not specified, the default value would be 1 if 'direct' is 'prev' with the response in ascending order, 
+                                the default value would be the ID of latest record if 'direct' is 'next' with the response in descending order.</param>
+            <param name="size">The number of items to return 1-500</param>
+            <param name="direct">the order of response	'prev' (ascending), 'next' (descending)	'prev'</param>
+            <returns></returns>
+        </member>
         <member name="M:Huobi.Net.HuobiClient.GetOrders(System.Collections.Generic.IEnumerable{Huobi.Net.Objects.HuobiOrderState},System.String,System.Collections.Generic.IEnumerable{Huobi.Net.Objects.HuobiOrderType},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int64},System.Nullable{Huobi.Net.Objects.HuobiFilterDirection},System.Nullable{System.Int32},System.Threading.CancellationToken)">
             <summary>
             Gets a list of orders
@@ -2526,6 +2539,61 @@
         <member name="P:Huobi.Net.Objects.HuobiSymbolTradeDetails.Timestamp">
             <summary>
             The timestamp of the trade
+            </summary>
+        </member>
+        <member name="P:Huobi.Net.Objects.HuobiTransaction.Id">
+            <summary>
+            Transfer id
+            </summary>
+        </member>
+        <member name="P:Huobi.Net.Objects.HuobiTransaction.Type">
+            <summary>
+            Define transfer type to search, possible values: [deposit, withdraw]
+            </summary>
+        </member>
+        <member name="P:Huobi.Net.Objects.HuobiTransaction.Currency">
+            <summary>
+            The crypto currency 
+            </summary>
+        </member>
+        <member name="P:Huobi.Net.Objects.HuobiTransaction.TxHash">
+            <summary>
+            The on-chain transaction hash
+            </summary>
+        </member>
+        <member name="P:Huobi.Net.Objects.HuobiTransaction.Amount">
+            <summary>
+            The number of crypto asset transfered in its minimum unit
+            </summary>
+        </member>
+        <member name="P:Huobi.Net.Objects.HuobiTransaction.Address">
+            <summary>
+            The deposit or withdraw source address
+            </summary>
+        </member>
+        <member name="P:Huobi.Net.Objects.HuobiTransaction.AddressTag">
+            <summary>
+            The user defined address tag
+            </summary>
+        </member>
+        <member name="P:Huobi.Net.Objects.HuobiTransaction.Fee">
+            <summary>
+            The amount of fee taken by Huobi in this crypto's minimum unit
+            </summary>
+        </member>
+        <member name="P:Huobi.Net.Objects.HuobiTransaction.State">
+            <summary>
+            The state of this transfer (see below for details)
+            </summary>
+        </member>
+        <member name="P:Huobi.Net.Objects.HuobiTransaction.CreatedAt">
+            <summary>
+            The timestamp in milliseconds for the transfer creation
+            </summary>
+        </member>
+        <member name="P:Huobi.Net.Objects.HuobiTransaction.UpdatedAt">
+            <summary>
+            The timestamp in milliseconds for the transfer's latest update
             </summary>
         </member>
         <member name="T:Huobi.Net.Objects.SocketObjects.HuobiAccountEvent">
