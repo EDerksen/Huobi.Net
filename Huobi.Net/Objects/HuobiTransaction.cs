@@ -14,7 +14,7 @@ namespace Huobi.Net.Objects
         /// <summary>
         /// Define transfer type to search, possible values: [deposit, withdraw]
         /// </summary>
-        public HuobiTransactionType Type { get; set; }
+        public HuobiFinanceTransactionType Type { get; set; }
         /// <summary>
         /// The crypto currency 
         /// </summary>

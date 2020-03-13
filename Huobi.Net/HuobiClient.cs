@@ -617,7 +617,7 @@ namespace Huobi.Net
         /// <param name="size">The number of items to return 1-500</param>
         /// <param name="direct">the order of response	'prev' (ascending), 'next' (descending)	'prev'</param>
         /// <returns></returns>
-        public async Task<WebCallResult<List<HuobiTransaction>>> GetTransactionsAsync(HuobiTransactionType type, string currency = null, string size = null, HuobiFilterDirection? direct = null, long? fromId = 1, CancellationToken ct = default)
+        public async Task<WebCallResult<List<HuobiTransaction>>> GetTransactionsAsync(HuobiFinanceTransactionType type, string currency = null, string size = null, HuobiFilterDirection? direct = null, long? fromId = 1, CancellationToken ct = default)
         {
             var parameters = new Dictionary<string, object>()
             {
@@ -632,7 +632,7 @@ namespace Huobi.Net
             return await SendHuobiRequest<List<HuobiTransaction>>(GetUrl(depositWithdrawEndpoint, "1"), HttpMethod.Get, ct, parameters, true, false).ConfigureAwait(false);
         }
 
-        public WebCallResult<List<HuobiTransaction>> GetTransactions(HuobiTransactionType type, string currency = null, string size = null, HuobiFilterDirection? direct = null, long? fromId = 1)
+        public WebCallResult<List<HuobiTransaction>> GetTransactions(HuobiFinanceTransactionType type, string currency = null, string size = null, HuobiFilterDirection? direct = null, long? fromId = 1)
         {
             return GetTransactionsAsync(type, currency, size, direct, fromId).Result;
         }

@@ -333,7 +333,8 @@
         Prev,
         Next
     }
-    public enum HuobiTransactionType
+
+    public enum HuobiFinanceTransactionType
     {
         Deposit,
         Withdraw
