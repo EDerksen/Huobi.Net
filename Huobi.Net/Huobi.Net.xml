@@ -440,7 +440,7 @@
             <param name="ct">Cancellation token</param>
             <returns></returns>
         </member>
-        <member name="M:Huobi.Net.HuobiClient.GetTransactionsAsync(Huobi.Net.Objects.HuobiTransactionType,System.String,System.String,System.Nullable{Huobi.Net.Objects.HuobiFilterDirection},System.Nullable{System.Int64},System.Threading.CancellationToken)">
+        <member name="M:Huobi.Net.HuobiClient.GetTransactionsAsync(Huobi.Net.Objects.HuobiFinanceTransactionType,System.String,System.String,System.Nullable{Huobi.Net.Objects.HuobiFilterDirection},System.Nullable{System.Int64},System.Threading.CancellationToken)">
             <summary>
             Get details of an transaction
             </summary>
